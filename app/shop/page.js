@@ -1,5 +1,6 @@
 import Footer from "@/components/FooterSection";
 import NavigationBar from "@/components/NavSection";
+import Link from "next/link";
 
 export default function Page() {
   return (
@@ -344,13 +345,13 @@ export default function Page() {
               </div>
               <div class="w-full grid grid-cols-3 gap-x-6 gap-y-10 mt-10">
                 <div class="w-full bg-white border border-gray-300 rounded-xl shadow dark:bg-gray-800 dark:border-gray-700">
-                  <a href="#">
+                  <Link href="/listing">
                     <img
                       class="rounded-t-lg"
                       src="https://uplive-co.vercel.app/assets/img/course-1.jpg"
                       alt=""
                     />
-                  </a>
+                  </Link>
                   <div class="p-5">
                     <div class="mb-4">
                       <span class="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-4 py-2 rounded-full dark:bg-blue-900 dark:text-blue-300">
@@ -358,9 +359,11 @@ export default function Page() {
                       </span>
                     </div>
                     <div>
-                      <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">
-                        English 101
-                      </h5>
+                      <Link href="/listing">
+                        <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">
+                          English 101
+                        </h5>
+                      </Link>
                     </div>
                     <p class="mb-3 text-sm font-normal text-gray-700 dark:text-gray-400 text-justify">
                       This English language course helps students improve their
