@@ -1,12 +1,11 @@
-import React from 'react'
-import DibsLogoLight from '../../public/assets/image/DibsLogo-black.png'
-import DibsLogoDark from '../../public/assets/image/DibsLogo-white.png'
+import DibsLogoLight from '../public/assets/image/DibsLogo-black.png'
+import DibsLogoDark from '../public/assets/image/DibsLogo-white.png'
 import Image from 'next/image';
 
 export default function Footer(){
     return(
         <footer class="bg-white dark:bg-gray-900 mt-20">
-            <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
+            <div class="mx-auto w-full p-4 py-6 lg:py-8">
                 <div class="md:flex md:justify-between">
                 <div class="mb-6 md:mb-0">
                     <div href="https://flowbite.com/" class="flex items-center">
