@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { supabase } from "../../utils/supabaseClient";
+import { supabase } from "@/utils/supabaseClient";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
@@ -17,12 +17,15 @@ export default function Page() {
         email: email,
         password: password,
       });
-      if (error) {
+      if (!error) {
+        router.push("/");
+      } else {
         alert(error.message);
-        return;
       }
-      alert("Check your email for the login link!");
+    } catch (error1) {
+      alert(error1.message);
     }
+
     // alert(JSON.stringify(data));
     // alert(JSON.stringify(error));
   }
