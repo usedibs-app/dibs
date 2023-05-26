@@ -7,7 +7,7 @@ import { supabase } from "@/utils/supabaseClient";
 export default async function Page() {
   let { data: listings, error } = await supabase
     .from("listings")
-    .select("title,short_desc,coverimg_url,listing_id,category_id,categories(category_id, name)")
+    .select("title,short_desc,coverimg_url,listing_id, categories (name)");
 
   if (error) {
     throw error.message;
@@ -15,6 +15,7 @@ export default async function Page() {
 
   console.log(listings);
 
+  // console.log(listings);
 
   return (
     <div className="w-screen max-w-screen h-screen px-16 py-6 bg-white">
@@ -358,10 +359,10 @@ export default async function Page() {
               </div>
               <div class="w-full grid grid-cols-3 gap-x-6 gap-y-10 mt-10">
                 {listings?.map((listing) => (
-                    <ListingCard
+                  <ListingCard
                     title={listing.title}
                     short_desc={listing.short_desc}
-                    category="Test"
+                    category={listing.categories.name}
                     img={listing.coverimg_url}
                     slug={listing.listing_id}
                   />

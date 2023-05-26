@@ -5,7 +5,20 @@ import NavBar from "../components/NavSection.js";
 import Footer from "../components/FooterSection.js";
 import ListingCard from "@/components/ListingCard";
 
-export default function Home() {
+import { supabase } from "@/utils/supabaseClient";
+
+export default async function Home() {
+  let { data: listings, error } = await supabase
+    .from("listings")
+    .select("title,short_desc,coverimg_url,listing_id, categories (name)")
+    .eq("new_listing", true);
+
+  if (error) {
+    throw error.message;
+  }
+
+  console.log(listings);
+
   return (
     <div className="w-screen max-w-screen h-screen px-16 py-6 bg-white">
       <NavBar></NavBar>
@@ -70,21 +83,15 @@ export default function Home() {
           <p class="mt-1">This is a sample text</p>
 
           <div className="grid grid-cols-3 min-h-[100px] gap-10 w-full mt-10">
-            <ListingCard
-              category="Languages"
-              name="English 101"
-              short_desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eu imperdiet quam. Pellentesque tortor diam, laoreet vestibulum diam eget, ultrices eleifend ante."
-            />
-            <ListingCard
-              category="Languages"
-              name="English 102"
-              short_desc="Donec quis euismod nisi. Sed vel felis odio. Integer eu dapibus tellus. Donec sed sem volutpat, malesuada ante quis, rutrum orci."
-            />
-            <ListingCard
-              category="Languages"
-              name="English 103"
-              short_desc="Nulla et massa quis justo consequat porta. Nulla ac nisi viverra, lobortis urna nec, pharetra nulla."
-            />
+            {listings?.map((listing) => (
+              <ListingCard
+                title={listing.title}
+                short_desc={listing.short_desc}
+                category={listing.categories.name}
+                img={listing.coverimg_url}
+                slug={listing.listing_id}
+              />
+            ))}
           </div>
         </div>
         <div class="mt-10">
